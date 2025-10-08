@@ -1,0 +1,97 @@
+import java.util.Scanner;
+
+class BinaryTreeNode {
+    String data;
+    BinaryTreeNode yesNode;
+    BinaryTreeNode noNode;
+
+    BinaryTreeNode(String data) {
+        this.data = data;
+        this.yesNode = null;
+        this.noNode = null;
+    }
+}
+
+public class AnimalIdentificationGame {
+    private BinaryTreeNode root;
+
+    public AnimalIdentificationGame() {
+        root = new BinaryTreeNode("Does it have four legs?");
+    }
+
+    public void playGame() {
+        Scanner scanner = new Scanner(System.in);
+        boolean continuePlaying = true;
+
+        while (continuePlaying) {
+            BinaryTreeNode currentNode = root;
+            while (currentNode.yesNode != null) {
+                System.out.println(currentNode.data);
+                String answer = scanner.nextLine().toLowerCase().trim();
+
+                if (answer.equals("yes")) {
+                    currentNode = currentNode.yesNode;
+                } else if (answer.equals("no")) {
+                    currentNode = currentNode.noNode;
+                } else {
+                    System.out.println("Please answer with 'yes' or 'no'.");
+                }
+            }
+
+            System.out.println("Is it a " + currentNode.data + "?");
+            String answer = scanner.nextLine().toLowerCase().trim();
+
+            if (answer.equals("yes")) {
+                System.out.println("I guessed it! Do you want to play again? (yes/no)");
+                String playAgain = scanner.nextLine().toLowerCase().trim();
+                if (!playAgain.equals("yes")) {
+                    continuePlaying = false;
+                }
+            } else if (answer.equals("no")) {
+                System.out.println("I give up. What is the animal?");
+                String animalName = scanner.nextLine();
+                System.out.println("Please provide a yes/no question to distinguish " + animalName + " from " + currentNode.data);
+                String newQuestion = scanner.nextLine();
+                System.out.println("Is the answer 'yes' for " + animalName + "? (yes/no)");
+                String answerForNewQuestion = scanner.nextLine().toLowerCase().trim();
+
+                BinaryTreeNode newNode = new BinaryTreeNode(animalName);
+                BinaryTreeNode oldNode = new BinaryTreeNode(currentNode.data);
+
+                if (answerForNewQuestion.equals("yes")) {
+                    currentNode.data = newQuestion;
+                    currentNode.yesNode = newNode;
+                    currentNode.noNode = oldNode;
+                } else {
+                    currentNode.data = newQuestion;
+                    currentNode.yesNode = oldNode;
+                    currentNode.noNode = newNode;
+                }
+
+                System.out.println("Game updated. Do you want to play again? (yes/no)");
+                String playAgain = scanner.nextLine().toLowerCase().trim();
+                if (!playAgain.equals("yes")) {
+                    continuePlaying = false;
+                }
+            } else {
+                System.out.println("Please answer with 'yes' or 'no'.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        AnimalIdentificationGame game = new AnimalIdentificationGame();
+        System.out.println("Welcome to the Animal Identification Game!");
+
+        // Add some animal data to start the game
+        game.root.yesNode = new BinaryTreeNode("Does it roar?");
+        game.root.noNode = new BinaryTreeNode("Does it hop?");
+        game.root.yesNode.yesNode = new BinaryTreeNode("Lion");
+        game.root.yesNode.noNode = new BinaryTreeNode("Tiger");
+        game.root.noNode.yesNode = new BinaryTreeNode("Kangaroo");
+        game.root.noNode.noNode = new BinaryTreeNode("Rabbit");
+
+        game.playGame();
+    }
+}
+

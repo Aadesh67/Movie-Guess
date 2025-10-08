@@ -1,0 +1,17 @@
+1 Is the actor known for their action roles?  // Question 1
+2 Is the actor known for their comedy roles?  // Question 2
+3 Is the actor known for their dramatic roles? // Question 3
+4 Has the actor played a superhero in a Marvel movie?  // Question 4
+5 Has the actor appeared in the "Pirates of the Caribbean" series?  // Question 5
+6 Is the actor known for their role in "Mission: Impossible"?  // Question 6
+7 Has the actor won an Oscar?  // Question 7
+8 Has the actor portrayed John Wick in a film series?  // Question 8
+9 Has the actor played the role of Iron Man?  // Question 9
+10 Has the actor portrayed Thor in the Marvel Cinematic Universe?  // Question 10
+
+// Answers
+Tom Hanks  // Actor's name (Answer for Questions 1-6 is "No")
+Robert Downey Jr.  // Actor's name (Answer for Question 7 is "Yes")
+Keanu Reeves  // Actor's name (Answer for Question 8 is "Yes")
+Johnny Depp  // Actor's name (Answer for Question 9 is "Yes")
+Chris Hemsworth  // Actor's name (Answer for Question 10 is "Yes")
